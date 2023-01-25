@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block contenido %}
+<div id="app">
+
+</div>
+{% endblock %}
+
+{% block componentes %}
+    <script type="text/babel" src="{% static 'js/componentes/ButtonRobot.js' %}"></script>
+    <script type="text/babel" src="{% static 'js/componentes/Inicio.js' %}"></script>
+    
+    <!--Insercion de los componentes en el template-->
+    <script type="text/babel">
+        const root = ReactDOM.createRoot(document.getElementById('app'))
+        root.render(<Inicio nombreBoton=' Inicio' icono='fas fa-home' />);
+    </script>
+{% endblock %}

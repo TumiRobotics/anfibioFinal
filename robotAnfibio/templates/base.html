@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <!--Importacion de estilos propios-->
+        <link rel="stylesheet" href="{% static 'css/ButtonRobot.css' %}">
+        <link rel="stylesheet" href="{% static 'css/General.css' %}">
+        <!--Fin de la importacion-->
+
+        <!--Importacion de bootstrap-->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/Bootstrap.css' %}">
+        <script type="text/javacsript" src="{% static 'js/BootstrapBundle.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/BootstrapMin.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/Popper.js' %}"></script>
+        <!--Fin de bootstrap-->
+
+        <!--Importacion de ReactJS-->
+        <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+        <script src='https://unpkg.com/react-router-dom@5.0.0/umd/react-router-dom.min.js'></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <!--Fin de ReactJS-->
+
+        <!--Inclusion de Jquery-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <!--Fin de Jquery-->
+
+        <!--Importar fontAwesome icons-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <!--Fin de la importacion de Icons-->
+
+        
+
+        {% block extra_js %}
+        {% endblock %}
+
+        {% block extra_css %}
+        {% endblock %}
+    </head>
+    <body>
+
+        {% block contenido %}
+        {% endblock %}
+
+        {% block componentes %}
+        {% endblock %}
+    </body>
+</html>

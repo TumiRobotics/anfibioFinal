@@ -1,0 +1,42 @@
+body,html {
+    height: 100%;
+    width: 100%;
+}
+
+#app {
+    height: 100%;
+    width: 100%;
+}
+
+.appContainerStart{
+    height: 100%;
+    width: 100%;
+    margin: 0 0 0 0;
+    background-image: url("../img/fondoInicio.png");
+    background-repeat: no-repeat, no-repeat;
+    background-size: cover;
+}
+
+.appContainerIngreso{
+    height: 100%;
+    width: 100%;
+    margin: 0 0 0 0;
+    background-image: url("../img/fondoIngreso.png");
+    background-repeat: no-repeat, no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logoContainer {
+    height: 282px;
+    width: 259px;
+    background-image: url("../img/logoTumi.png");
+    background-repeat: no-repeat, no-repeat;
+    background-size: cover;
+}
+
+.cargaContainer {
+    position: absolute;
+}

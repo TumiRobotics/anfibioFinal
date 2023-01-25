@@ -1,0 +1,25 @@
+.mainButton {
+    color: black;
+    background-color: #96EADA;
+    border: solid 1px #96EADA;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24);
+    height: 60px;
+    width: 240px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.mainButton:hover{
+    background-color: #96DADA;
+    border: solid 1px #96DADA;
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24);  
+    
+}
+
+.mainButton:active {
+    background-color: #96EADA;
+    border: solid 1px #96EADA;
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24);  
+}
