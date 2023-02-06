@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_js %}
+    <script src="{% static 'js/Consola.js' %}"></script>
+{% endblock %}
+
+{% block contenido %}
+<div id="app">
+    <div class="mainContainer">
+        <div class="internalMain">
+            <div class="logoTumi">
+                <img src="{% static 'img/logoSuperior.png' %}" class="logoSuperior">
+            </div>
+            <div class="position-absolute start-0 top-0" style="background-color: transparent; width: 1280px; height: 120px;">
+                <div class="position-absolute top-50 end-0 translate-middle-y" style="margin-right: 30px;">
+                    <a style="text-decoration: none;" href="{% url 'robotAnfibio:logout' %}">
+                        <button style="width:60px; height:60px; border-radius: 50%; border: solid 2px #96EADA; background-color: transparent;"><i class="fa-solid fa-right-from-bracket fa-2x" style="color: #96EADA;"></i></button>
+                    </a>
+                </div>
+            </div>
+            <p class="textoApp" id="mensajeGeneral">Consola de administrador</p>
+            <div class="contenedorUsuarios position-absolute top-50 start-50 translate-middle">
+                <div class="userContainer" id="opcionesAdmin">  
+                    <div class="userInfo justify-content-center">
+                        <a style="text-decoration: none;" href="{% url 'robotAnfibio:nuevoUsuario' %}">
+                        <button class="contenedorFoto">
+                            <i class="fa-solid fa-user-plus fa-7x" style="color: #96EADA;"></i>
+                        </button>
+                        </a>
+                        <div class="infoNombres justify-content-center" id="nom{{ usuario.id }}">
+                            <div class="justify-content-center">
+                                <p class="nombreUsuario">Crear usuario</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="userInfo justify-content-center">
+                        <button class="contenedorFoto" data-bs-toggle="modal" data-bs-target="#newShip">
+                            <i class="fa-solid fa-ship fa-7x" style="color: #96EADA;"></i>
+                        </button>
+                        <div class="infoNombres justify-content-center" id="nom{{ usuario.id }}">
+                            <div class="justify-content-center">
+                                <p class="nombreUsuario">Crear embarcacion</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="userInfo justify-content-center" id="cnt{{ usuario.id }}">
+                        <button class="contenedorFoto">
+                            <i class="fa-solid fa-users fa-7x" style="color: #96EADA;"></i>
+                        </button>
+                        <div class="infoNombres justify-content-center" id="nom{{ usuario.id }}">
+                            <div class="justify-content-center">
+                                <p class="nombreUsuario">Usuarios</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="userInfo justify-content-center" id="cnt{{ usuario.id }}">
+                        <button class="contenedorFoto">
+                            <i class="fa-solid fa-sailboat fa-7x" style="color: #96EADA;"></i>
+                        </button>
+                        <div class="infoNombres justify-content-center" id="nom{{ usuario.id }}">
+                            <div class="justify-content-center">
+                                <p class="nombreUsuario">Embarcaciones</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="userInfo justify-content-center" id="cnt{{ usuario.id }}">
+                        <button class="contenedorFoto">
+                            <i class="fa-solid fa-file-export fa-7x" style="color: #96EADA;"></i>
+                        </button>
+                        <div class="infoNombres justify-content-center" id="nom{{ usuario.id }}">
+                            <div class="justify-content-center">
+                                <p class="nombreUsuario">Inspecciones</p>
+                            </div>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+            <div class="position-absolute start-0 top-50 translate-middle-y">
+                <button id="btnLeft"><i class="fas fa-arrow-circle-left fa-6x" style="color: #96EADA;"></i></button>
+            </div>
+            <div class="position-absolute end-0 top-50 translate-middle-y">
+                <button id="btnRight"><i class="fas fa-arrow-circle-right fa-6x" style="color: #96EADA;"></i></button>
+            </div>
+            
+        </div>
+        <div class="position-absolute end-0 bottom-0" style="background-color: transparent; width: 300px; height: 150px;">
+            <a style="text-decoration: none;" href="{% url 'robotAnfibio:main' %}"><button class="mainButton">Iniciar</button></a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block componentes %}
+
+
+{% endblock %}

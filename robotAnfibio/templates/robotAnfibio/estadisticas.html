@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_js %}
+{% endblock %}
+
+{% block contenido %}
+<div id="app">
+    <div class="position-absolute start-0 top-0 appContainerIniciar">
+        <div class="position-absolute start-0 top-0" style="background-color: transparent; width: 1280px; height: 120px;">
+            <div class="position-absolute top-50 translate-middle-y">
+                <img src="{% static 'img/logoSuperior.png' %}" style="height:60px; width: auto; margin-left: 20px;">
+            </div>
+            <div class="position-absolute top-50 translate-middle-y" style="margin-left: 220px; border-left: solid 4px #96EADA;">
+                <p class="textoApp" style="margin: 10px 10px 10px 10px;">Estadisticas</p>
+            </div>
+            <div class="position-absolute top-50 end-0 translate-middle-y" style="margin-right: 30px;">
+                <a style="text-decoration: none;" href="{% url 'robotAnfibio:logout' %}">
+                    <button style="width:60px; height:60px; border-radius: 50%; border: solid 2px #96EADA; background-color: transparent;"><i class="fa-solid fa-right-from-bracket fa-2x" style="color: #96EADA;"></i></button>
+                </a>
+            </div>
+        </div>
+        <div style="margin-top: 120px; margin-left: 20px; display: flex; flex-direction: row;">
+            <a style="text-decoration: none;" href="{% url 'robotAnfibio:main' %}"><button class="leftArrow"><i class="fas fa-arrow-left fa-2x" style="color: white;"></i></button></a>
+        </div>
+        <div class="position-absolute start-50 top-0 translate-middle-x justify-content-center" style="margin-top:200px;background-color: transparent; width: 700px; height: 160px; display: flex; flex-direction: row;">
+            <div style="width: 200px; height: 120px; background-color: transparent; margin-top: 20px; margin-left: 10px; margin-right: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <div class="labelEstadistica">
+                    Distancia total
+                </div>
+                <div style="display: flex; flex-direction: row; align-items: center;">
+                    <div class="textoEstadistica">
+                        {{ distanciaTotal }}
+                    </div>
+                    <div class="labelEstadistica">
+                        km
+                    </div>
+                </div>
+            </div>
+            <div style="width: 200px; height: 120px; background-color: transparent; margin-top: 20px; margin-left: 10px; margin-right: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-left: solid 2px #96EADA; border-right: solid 2px #96EADA;">
+                <div class="labelEstadistica">
+                    Tiempo total
+                </div>
+                <div style="display: flex; flex-direction: row; align-items: center;">
+                    <div class="textoEstadistica">
+                        {{ duracionTotal }}
+                    </div>
+                    <div class="labelEstadistica">
+                        hrs
+                    </div>
+                </div>
+            </div>
+            <div style="width: 200px; height: 120px; background-color: transparent; margin-top: 20px; margin-left: 10px; margin-right: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <div class="labelEstadistica">
+                    Nro de recorridos
+                </div>
+                <div style="display: flex; flex-direction: row; align-items: center;">
+                    <div class="textoEstadistica">
+                        {{ nroRecorridos }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="position-absolute top-50 start-50 translate-middle" style="background-color: transparent; width: 1000px; height: 300px; margin-top: 150px; overflow-y: scroll; max-height: 300px;">
+            <table class="moreStats_table">
+                <thead class="moreStats_table" style="background-color: #272727;">
+                    <th style="text-align: center; padding-top: 10px; padding-bottom: 10px;">Fecha</th>
+                    <th style="text-align: center;">Distancia</th>
+                    <th style="text-align: center;">Duracion</th>
+                    <th style="text-align: center;">Embarcacion</th>
+                    <th style="text-align: center;">Multimedia</th>
+                </thead>
+                <tbody class="moreStats_table">
+                    {% for inspeccion in inspecciones %}
+                    <tr>
+                        <td>{{ inspeccion.fecha_inspeccion|date:"d-m-Y" }}</td>
+                        <td>{{ inspeccion.distancia_inspeccion }}</td>
+                        <td>{{ inspeccion.duracion_inspeccion }}</td>
+                        <td>{{ inspeccion.embarcacion_inspeccion }}</td>
+                        <td><a style="text-decoration: none;" href="{% url 'robotAnfibio:galeria' inspeccion.id %}"><button class="btn btn-info"><i class="fa-solid fa-eye"></i></button></a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block componentes %}
+{% endblock %}

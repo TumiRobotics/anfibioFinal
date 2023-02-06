@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_js %}
+    <script src="{% static 'js/Trabajo.js' %}"></script>
+{% endblock %}
+
+{% block contenido %}
+<div id="app">
+    <div class="position-absolute start-0 top-0 appContainerIniciar">
+        <div class="position-absolute start-0 top-0" style="background-color: transparent; width: 1280px; height: 120px;">
+            <div class="position-absolute top-50 translate-middle-y">
+                <img src="{% static 'img/logoSuperior.png' %}" style="height:60px; width: auto; margin-left: 20px;">
+            </div>
+            <div class="position-absolute top-50 translate-middle-y" style="margin-left: 220px; border-left: solid 4px #96EADA;">
+                <p class="textoApp" style="margin: 10px 10px 10px 10px;">Iniciar trabajo</p>
+            </div>
+            <div class="position-absolute top-50 end-0 translate-middle-y" style="margin-right: 30px;">
+                <a style="text-decoration: none;" href="{% url 'robotAnfibio:logout' %}">
+                    <button style="width:60px; height:60px; border-radius: 50%; border: solid 2px #96EADA; background-color: transparent;"><i class="fa-solid fa-right-from-bracket fa-2x" style="color: #96EADA;"></i></button>
+                </a>
+            </div>
+        </div>
+        <div style="margin-top: 120px; margin-left: 20px; display: flex; flex-direction: row;">
+            <a style="text-decoration: none;" href="{% url 'robotAnfibio:main' %}"><button class="leftArrow"><i class="fas fa-arrow-left fa-2x" style="color: white;"></i></button></a>
+            <input class="inputBuscar" maxlength="20" type="text" placeholder="Buscar por nombre ...">
+        </div>
+        <div class="position-absolute top-50 start-50 translate-middle contenedorBarcos">
+            <div class="barcosContainer" id="embarcacionSeleccion">
+                {% for barco in embarcacionesAnfibio %}
+                <a style="text-decoration: none;" href="{% url 'robotAnfibio:monitoreo' barco.codigo_embarcacion %}">
+                    <div style="display: flex; flex-direction: column; width: 300px; height: 290px;min-width: 300px; margin-left: 10px; margin-right: 10px; margin-top: auto;margin-bottom: auto; background-color: transparent;">
+                        <div class="justify-content-center">
+                            <img src="{% static barco.imagen_embarcacion %}" style="width: 260px; height: 250px; margin-left: 10px;">
+                        </div>
+                        <div class="infoNombres justify-content-center">
+                            <div class="justify-content-center">
+                                <p class="codigoUsuario">{{ barco.codigo_embarcacion }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="position-absolute start-0 top-50 translate-middle-y">
+            <button id="btnIzquierda"><i class="fas fa-arrow-circle-left fa-6x" style="color: #96EADA;"></i></button>
+        </div>
+        <div class="position-absolute end-0 top-50 translate-middle-y">
+            <button id="btnDerecha"><i class="fas fa-arrow-circle-right fa-6x" style="color: #96EADA;"></i></button>
+        </div>
+        <div class="position-absolute bottom-0 start-0" style="margin-left:130px; margin-bottom: 30px;">
+            <p class="textoInferior">TUMI ANFIBIO 2022 - Limpieza de barcos</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block componentes %}
+{% endblock %}
+

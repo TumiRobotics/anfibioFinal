@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_js %}
+<script src="{% static 'js/Monitoreo.js' %}"></script>
+{% endblock %}
+
+{% block contenido %}
+<div id="app">
+    <div class="position-absolute start-50 top-50 translate-middle" style="width: 1280px; height: 720px;">
+        <img src="http://192.168.137.80:8080/?action=stream" style="width: 1280px; height: 720px;" alt=""/>
+    </div>
+    <div class="appContainerMonitoreo">
+        <div class="position-absolute top-50 start-50 translate-middle">
+            <button style="justify-content: center; align-items: center ;width: 130px;height:130px; background-color: transparent; border-radius: 50%; border: solid 10px rgba(0,0,0,0.70);"><i class="fa-solid fa-location-arrow fa-6x" style="color: rgba(0,0,0,0.70)"></i></button>
+        </div>
+        <div class="position-absolute start-0 top-0" style="background-color: #0F0F0F; width: 1280px; height: 120px;">
+            <div class="position-absolute top-50 translate-middle-y">
+                <img src="{% static 'img/logoSuperior.png' %}" style="height:60px; width: auto; margin-left: 20px;">
+            </div>
+            <div class="position-absolute top-50 translate-middle-y" style="margin-left: 220px; border-left: solid 4px #96EADA;">
+                <p class="textoApp" style="margin: 10px 10px 10px 10px;">Trabajo iniciado</p>
+            </div>
+            <div class="position-absolute top-50 end-0 translate-middle-y" style="margin-right: 30px;">
+                <button data-bs-toggle="modal" data-bs-target="#terminarModal" style="width:60px; height:60px; border-radius: 50%; border: solid 2px #96EADA; background-color: transparent;"><i class="fa-solid fa-circle-xmark fa-2x" style="color: #96EADA;"></i></button>
+            </div>
+        </div>
+        <div style="background-color: rgba(0,0,0,0.70); width: 680px; height: 50px; margin-top: 140px;" class="position-absolute start-50 top-0 translate-middle-x">
+
+        </div>
+        <div class="position-absolute bottom-0 end-0" style="background-color: transparent; width: 180px; height: 600px; display: flex; flex-direction: column; align-items: center;">
+            <div style="width: 70px; height: 70px; background-color: rgba(0,0,0,0.70);border-radius: 50%; margin-top: 10px; margin-bottom: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <button style="border-radius: 50%; height: 55px; width: 55px; border: solid 4px #96EADA; background-color: transparent;"><i class="fa-solid fa-gun fa-2x" style="color: #96EADA;"></i></button>
+            </div>
+            <div style="width: 70px; height: 70px; background-color: rgba(0,0,0,0.70);border-radius: 50%; margin-top: 10px; margin-bottom: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <button style="border-radius: 50%; height: 55px; width: 55px; border: solid 4px #96EADA; background-color: transparent;">
+                    <div style="display: flex; flex-direction: column;">
+                        <i class="fa-brands fa-empire" style="color: #96EADA;"></i>
+                    </div>
+                    <div style="display: flex; flex-direction: row; justify-content: center;">
+                        <i class="fa-brands fa-empire" style="color: #96EADA;"></i>
+                        <i class="fa-brands fa-empire" style="color: #96EADA;"></i>
+                    </div>
+                </button>
+            </div>
+            <div style="width: 70px; height: 70px; background-color: rgba(0,0,0,0.70);border-radius: 50%; margin-top: 10px; margin-bottom: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <button style="border-radius: 50%; height: 55px; width: 55px; border: solid 4px #96EADA; background-color: transparent;"><i class="fa-solid fa-lightbulb fa-2x" style="color: #96EADA;"></i></button>
+            </div>
+            <div style="width: 70px; height: 70px; background-color: rgba(0,0,0,0.70); border-radius: 50%; margin-top: 10px; margin-bottom: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <button onclick="capturarVideo()" style="width: 55px; height: 55px; position: relative; border-radius: 50%; border: solid 4px #96EADA; background-color: transparent;">
+                    <i class="fa-solid fa-video fa-2x position-absolute top-50 start-50 translate-middle" style="color: #96EADA;"></i>
+                </button>
+            </div>
+            <div style="width: 70px; height: 70px; background-color: rgba(0,0,0,0.70); border-radius: 50%; margin-top: 10px; margin-bottom: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <button onclick="capturarFoto()" style="width: 55px; height: 55px; position: relative; border-radius: 50%; border: solid 4px #96EADA; background-color: transparent;">
+                    <i class="fa-solid fa-camera fa-2x position-absolute top-50 start-50 translate-middle" style="color: #96EADA;"></i>
+                </button>
+            </div>
+            <!--
+            <div style="width: 60px; height: 60px; background-color: transparent; margin-top: 10px; margin-bottom: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <button style="width: 55px; height: 55px; position: relative; border-radius: 50%;">
+                    <i class="fa-regular fa-circle fa-3x position-absolute top-50 start-50 translate-middle"></i>
+                    <i class="fa-solid fa-play fa-2x position-absolute top-50 start-50 translate-middle"></i>
+                </button>
+            </div>
+            -->
+        </div>
+        <div class="position-absolute bottom-0 start-0" style="background-color: transparent; height: 350px; width: 350px;">
+            <div class="position-absolute end-0 top-0" style="background-color: white; width: 220px; height: 220px; border-radius: 20px;" id="sonarData">
+
+            </div>
+            <div class="position-absolute end-0 bottom-0" style="background-color: transparent; margin-bottom: 30px; height: 90px; width: 220px; display: flex; flex-direction: column;">
+                <div style="display: flex; flex-direction: row;" class="justify-content-center">
+                    D : <strong id="d1"></strong>, D: <strong id="d2"></strong>
+                </div>
+                <div style="display: flex; flex-direction: row;" class="justify-content-center">
+                    V.H. : <strong id="v1"></strong>, V.H. : <strong id="v2"></strong>
+                </div>
+                <div style="display: flex; flex-direction: row;" class="justify-content-center">
+                    NE : <strong id="n1"></strong>, NE : <strong id="n2"></strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="terminarModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h5 class="modal-title text-white textoApp" id="nombreFoto">Terminar inspeccion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="textoApp">¿Desea terminar la inspeccion?</p>
+            </div>
+            <div class="modal-footer">
+                <a style="text-decoration: none;" href="{% url 'robotAnfibio:terminarInspeccion' %}"><button class="mainButton">Terminar</button></a>
+                <button class="mainButton" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block componentes %}
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_js %}
+    <script src="{% static 'js/Galeria.js' %}"></script>
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/Galeria.css' %}">
+{% endblock %}
+
+{% block contenido %}
+<div id="app">
+    <div class="position-absolute start-0 top-0 appContainerIniciar">
+        <div class="position-absolute start-0 top-0" style="background-color: transparent; width: 1280px; height: 120px;">
+            <div class="position-absolute top-50 translate-middle-y">
+                <img src="{% static 'img/logoSuperior.png' %}" style="height:60px; width: auto; margin-left: 20px;">
+            </div>
+            <div class="position-absolute top-50 translate-middle-y" style="margin-left: 220px; border-left: solid 4px #96EADA;">
+                <p class="textoApp" style="margin: 10px 10px 10px 10px;">Galería</p>
+            </div>
+            <div class="position-absolute top-50 end-0 translate-middle-y" style="margin-right: 30px;">
+                <button style="width:60px; height:60px; border-radius: 50%; border: solid 2px #96EADA; background-color: transparent;"><i class="fa-solid fa-right-from-bracket fa-2x" style="color: #96EADA;"></i></button>
+            </div>
+        </div>
+        <div style="margin-top: 120px; margin-left: 20px; display: flex; flex-direction: row;">
+            {% if ind == '0' %}
+            <a style="text-decoration: none;" href="{% url 'robotAnfibio:main' %}">
+                <button class="leftArrow"><i class="fas fa-arrow-left fa-2x" style="color: white;"></i></button>
+            </a>
+            {% else %}
+            <a style="text-decoration: none;" href="{% url 'robotAnfibio:estadisticas' %}">
+                <button class="leftArrow"><i class="fas fa-arrow-left fa-2x" style="color: white;"></i></button>
+            </a>
+            {% endif %}
+            <input class="inputBuscar" maxlength="20" type="text" placeholder="Buscar por codigo ...">
+        </div>
+        <div class="position-absolute start-50 translate-middle-x botonesGaleria">
+            <button class="botonFotoVideo botonDeshabilitado" onclick="mostrarVideo()" id="btnVideo">Videos</button>
+            <button class="botonFotoVideo botonHabilitado" onclick="mostrarFoto()" id="btnFoto">Fotos</button>
+        </div>
+        <div class="contenedorFotos position-absolute bottom-0 start-50 translate-middle-x" id="fotosTotales">
+            {% for foto in fotos %}
+                <div class="fotoInfo">
+                    <div style="display: flex; flex-direction: row;" class="justify-content-center">
+                        <button style="background-color: transparent; border: none;" data-bs-toggle="modal" data-bs-target="#fotoModal" onclick="mostrarImagen(this.id,this.name)" name="{{ foto.1 }}" id="{{ foto.0 }}">
+                            <img src="{% static foto.0 %}" style="width: 160px; height: 160px;">
+                        </button>
+                    </div>
+                    <div class="justify-content-center" style="display: flex; flex-direction: row; padding-top: 5px;">
+                        <p class="codigoFoto">{{ foto.1 }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="contenedorFotos position-absolute bottom-0 start-50 translate-middle-x" id="videosTotales" style="display: none;">
+            {% for video in videos %}
+                <div class="fotoInfo">
+                    <div style="display: flex; flex-direction: row;" class="justify-content-center">
+                        <button style="background-color: transparent; border: none;" data-bs-toggle="modal" data-bs-target="#videoModal" onclick="verVideo(this.id,this.name)" name="{{ video.1 }}" id="{{ video.0 }}">
+                            <img src="{% static 'img/videoLogo.png' %}" style="width: 160px; height: 160px;">
+                        </button>
+                    </div>
+                    <div class="justify-content-center" style="display: flex; flex-direction: row; padding-top: 5px;">
+                        <p class="codigoFoto">{{ video.1 }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="fotoModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h5 class="modal-title text-white textoApp" id="nombreFoto">Foto de inspeccion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12 justify-content-center">
+                        <img class="rounded mx-auto d-block" style="display:block; max-width:450px; max-height:450px; width:auto;height:auto;" id="fuenteFoto">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h5 class="modal-title text-white textoApp" id="nombreVideo">Video de inspeccion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="cerrarVideo()"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12 justify-content-center" style="display: flex; flex-direction: row; max-width: 600px; max-height: 600px;">
+                        <video controls name="media" id="fuenteVideo">
+                            <source type="video/mp4" src="{% static 'ins/ins-0001/videos/vid1.mp4' %}">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block componentes %}
+{% endblock %}

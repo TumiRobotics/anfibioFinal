@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from . models import UsuarioAnfibio
+from . models import UsuarioAnfibio, EmbarcacionesAnfibio, InspeccionesAnfibio
 
 # Register your models here.
 """
@@ -14,7 +14,7 @@ class UsuarioRegistro(UserAdmin):
     fieldsets = (
         (
             None, {
-                'fields':('username','password1','password2')
+                'fields':('username','password')
             }
         ),
         (
@@ -68,3 +68,5 @@ class UsuarioRegistro(UserAdmin):
     
 
 admin.site.register(UsuarioAnfibio,UsuarioRegistro)
+admin.site.register(EmbarcacionesAnfibio)
+admin.site.register(InspeccionesAnfibio)

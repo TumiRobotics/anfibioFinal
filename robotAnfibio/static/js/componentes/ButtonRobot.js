@@ -9,7 +9,7 @@ class ButtonRobot extends React.Component
     render()
     {
         return(
-            <a style={{textDecoration: 'none'}} href="/login">
+            <a style={{textDecoration: 'none'}} href={this.props.referencia}>
                 <button className="mainButton"><i className={this.props.icono}></i>{this.props.nombreBoton}</button>
             </a>
         );

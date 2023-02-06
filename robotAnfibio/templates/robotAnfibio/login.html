@@ -2,21 +2,76 @@
 
 {% load static %}
 
+{% block extra_js %}
+<script src="{% static 'js/Login.js' %}"></script>
+{% endblock %}
+
 {% block contenido %}
-<!--
-<div style="background-color: green; height: 100%; width: 100%; margin: 0 0 0 0; background-image: url('../../static/img/fondoInicio.png');">
-
+<div id="app">
+    <div class="mainContainer">
+        <div class="internalMain">
+            <div class="logoTumi">
+                <img src="{% static 'img/logoSuperior.png' %}" class="logoSuperior">
+            </div>
+            <div style="display: none;" id="refrescar">
+                <a style="text-decoration: none;" href="{% url 'robotAnfibio:login' %}">
+                    <button class="leftArrow"><i class="fas fa-arrow-left fa-2x" style="color: white;"></i></button>
+                </a>
+            </div>
+            <p class="textoApp" id="mensajeGeneral">Identificate para iniciar</p>
+            <div class="contenedorUsuarios position-absolute top-50 start-50 translate-middle">
+                <div class="userContainer" id="usuariosLogin">
+                    {% for usuario in usuarios %}
+                        <div class="position-absolute start-0 top-0" style="margin-left: 60px; display: none;" id="sal{{ usuario.id }}">
+                            <p class="textoApp">Hola {{ usuario.first_name }}</p>
+                        </div>
+                        <div class="userInfo justify-content-center" id="cnt{{ usuario.id }}">
+                            <button class="contenedorFoto" onclick="usuarioSeleccionado(this.id)" id="usr{{ usuario.id }}">
+                                <img class="fotoUsuario" src="{% static usuario.imagen_usuario %}">
+                            </button>
+                            <div class="infoNombres justify-content-center" id="nom{{ usuario.id }}">
+                                <div class="justify-content-center">
+                                    <p class="nombreUsuario">{{ usuario.first_name }} {{ usuario.last_name }}</p>
+                                </div>
+                            </div>
+                            <div class="infoNombres justify-content-center" id="cod{{ usuario.id }}">
+                                <div class="justify-content-center">
+                                    <p class="codigoUsuario">{{ usuario.codigo_usuario }}</p>
+                                </div>
+                            </div>
+                            <div class="infoNombres justify-content-center" style="display: none;" id="con{{ usuario.id }}">
+                                <div class="justify-content-center">
+                                    <p class="ingresarUsuario">Ingresa tu contraseña</p>
+                                </div>
+                            </div>
+                            <form method="post" action="{% url 'robotAnfibio:login' %}">
+                                <div class="infoNombres justify-content-center" style="display: none;">
+                                    <input class="ingresoContra" type="text" value="{{ usuario.username }}" name="usuarioUsername">
+                                </div>
+                                <div class="infoNombres justify-content-center" style="display: none;" id="inp{{ usuario.id }}">
+                                    <input class="ingresoContra" type="password" name="usuarioContra">
+                                </div>
+                                <div class="infoNombres justify-content-center" style="display: none;" id="sub{{ usuario.id }}">
+                                    <button type="submit" class="ingresarButton">Iniciar sesion</button>
+                                </div>
+                            </form>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="position-absolute start-0 top-50 translate-middle-y">
+                <button id="btnLeft"><i class="fas fa-arrow-circle-left fa-6x" style="color: #96EADA;"></i></button>
+            </div>
+            <div class="position-absolute end-0 top-50 translate-middle-y">
+                <button id="btnRight"><i class="fas fa-arrow-circle-right fa-6x" style="color: #96EADA;"></i></button>
+            </div>
+        </div>
+    </div>
 </div>
--->
 
-<div id="app"></div>
 {% endblock %}
 
 {% block componentes %}
-<script type="text/babel" src="{% static 'js/componentes/Usuarios.js' %}"></script>
-<script type="text/babel">
-    const root = ReactDOM.createRoot(document.getElementById('app'))
-    root.render(<Usuarios />);
-</script>
+
 
 {% endblock %}

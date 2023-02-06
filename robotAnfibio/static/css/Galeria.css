@@ -1,0 +1,60 @@
+.contenedorFotos {
+    width: 960px;
+    height: 400px;
+    background-color: #272727;
+    margin-bottom: 60px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-x: unset;
+    overflow-y: scroll;
+    border-radius: 10px;
+}
+
+.fotoInfo {
+    width: 200px;
+    height: 200px;
+    margin: 20px 20px;
+    padding-top: 8px;
+    background-color: #474b4e;
+    border-radius: 15px;
+}
+
+.botonesGaleria {
+    border: 4px solid #96EADA;
+    border-radius: 16px;
+    margin: 15px 0;
+    overflow-y: unset;
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    justify-content: center;
+}
+
+.botonFotoVideo {
+    padding: 3px 60px;
+    font-family: "Montserrat";
+    font-size: 24px;
+    font-weight: 700;
+    color: #000000;
+    border-radius: 16px;
+    min-height: 30px;
+}
+
+.botonHabilitado{
+    border: none;
+    color: #000000;
+    background-color: #96EADA;
+}
+
+.botonDeshabilitado{
+    border: none;
+    color: #96EADA;
+    background-color: transparent;
+}
+
+.codigoFoto {
+    font-size: 16px;
+    font-family: 'Montserrat', 'sans-serif';
+    color: white;
+}

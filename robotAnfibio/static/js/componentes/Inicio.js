@@ -20,8 +20,6 @@ class Inicio extends React.Component
 
     render()
     {
-
-        console.log('Se ha renderizado')
         if (this.state.loading)
         {
             return(
@@ -29,7 +27,7 @@ class Inicio extends React.Component
                     <div className="position-absolute start-0 bottom-0">
                         <div style={{width: "300px", height: "110px"}}>
                             <div id="btnInicio" className="position-absolute top-0 end-0">
-                                <ButtonRobot nombreBoton=' Inicio' icono='fas fa-home' />
+                                <ButtonRobot nombreBoton=' Inicio' icono='fas fa-home' referencia='/login' />
                             </div>
                         </div>
                     </div>
