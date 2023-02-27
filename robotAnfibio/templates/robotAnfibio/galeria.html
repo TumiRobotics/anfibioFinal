@@ -34,7 +34,8 @@
                 <button class="leftArrow"><i class="fas fa-arrow-left fa-2x" style="color: white;"></i></button>
             </a>
             {% endif %}
-            <input class="inputBuscar" maxlength="20" type="text" placeholder="Buscar por codigo ...">
+            <input class="inputBuscar" maxlength="20" type="text" placeholder="Buscar por codigo ..." onchange="buscarFoto(this)" id="barraFoto">
+            <input class="inputBuscar" maxlength="20" type="text" placeholder="Buscar por codigo ..." onchange="buscarVideo(this)" style="display: none;" id="barraVideo">
         </div>
         <div class="position-absolute start-50 translate-middle-x botonesGaleria">
             <button class="botonFotoVideo botonDeshabilitado" onclick="mostrarVideo()" id="btnVideo">Videos</button>
@@ -42,7 +43,7 @@
         </div>
         <div class="contenedorFotos position-absolute bottom-0 start-50 translate-middle-x" id="fotosTotales">
             {% for foto in fotos %}
-                <div class="fotoInfo">
+                <div class="fotoInfo busquedaFoto">
                     <div style="display: flex; flex-direction: row;" class="justify-content-center">
                         <button style="background-color: transparent; border: none;" data-bs-toggle="modal" data-bs-target="#fotoModal" onclick="mostrarImagen(this.id,this.name)" name="{{ foto.1 }}" id="{{ foto.0 }}">
                             <img src="{% static foto.0 %}" style="width: 160px; height: 160px;">
@@ -56,7 +57,7 @@
         </div>
         <div class="contenedorFotos position-absolute bottom-0 start-50 translate-middle-x" id="videosTotales" style="display: none;">
             {% for video in videos %}
-                <div class="fotoInfo">
+                <div class="fotoInfo busquedaVideo">
                     <div style="display: flex; flex-direction: row;" class="justify-content-center">
                         <button style="background-color: transparent; border: none;" data-bs-toggle="modal" data-bs-target="#videoModal" onclick="verVideo(this.id,this.name)" name="{{ video.1 }}" id="{{ video.0 }}">
                             <img src="{% static 'img/videoLogo.png' %}" style="width: 160px; height: 160px;">

@@ -24,12 +24,12 @@
         </div>
         <div style="margin-top: 120px; margin-left: 20px; display: flex; flex-direction: row;">
             <a style="text-decoration: none;" href="{% url 'robotAnfibio:main' %}"><button class="leftArrow"><i class="fas fa-arrow-left fa-2x" style="color: white;"></i></button></a>
-            <input class="inputBuscar" maxlength="20" type="text" placeholder="Buscar por nombre ...">
+            <input class="inputBuscar" maxlength="20" type="text" placeholder="Buscar por nombre ..." id="busquedaBarco" onchange="buscarBarco(this)">
         </div>
         <div class="position-absolute top-50 start-50 translate-middle contenedorBarcos">
             <div class="barcosContainer" id="embarcacionSeleccion">
                 {% for barco in embarcacionesAnfibio %}
-                <a style="text-decoration: none;" href="{% url 'robotAnfibio:monitoreo' barco.codigo_embarcacion %}">
+                <a class="buscarBarco" style="text-decoration: none;" href="{% url 'robotAnfibio:monitoreo' barco.codigo_embarcacion %}">
                     <div style="display: flex; flex-direction: column; width: 300px; height: 290px;min-width: 300px; margin-left: 10px; margin-right: 10px; margin-top: auto;margin-bottom: auto; background-color: transparent;">
                         <div class="justify-content-center">
                             <img src="{% static barco.imagen_embarcacion %}" style="width: 260px; height: 250px; margin-left: 10px;">

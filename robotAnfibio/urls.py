@@ -10,6 +10,9 @@ urlpatterns = [
     path('main',views.main,name='main'),
     path('consola',views.consola,name='consola'),
     path('nuevoUsuario',views.nuevoUsuario,name='nuevoUsuario'),
+    path('eliminarUsuario/<str:usuarioId>',views.eliminarUsuario,name='eliminarUsuario'),
+    path('nuevaEmbarcacion',views.nuevaEmbarcacion,name='nuevaEmbarcacion'),
+    path('eliminarEmbarcacion/<str:embarcacionId>',views.eliminarEmbarcacion,name='eliminarEmbarcacion'),
     path('monitoreo/<str:ind>',views.monitoreo,name='monitoreo'),
     path('trabajo',views.trabajo,name='trabajo'),
     path('estadisticas',views.estadisticas,name='estadisticas'),
@@ -26,4 +29,7 @@ urlpatterns = [
     path('detenerVideoInspeccion',views.detenerVideoInspeccion,name='detenerVideoInspeccion'),
     path('capturarInfoSonar',views.capturarInfoSonar,name='capturarInfoSonar'),
     path('capturarInfoSensorInercial',views.capturarInfoSensorInercial,name='capturarInfoSensorInercial'),
+    path('getSizeProject',views.getSizeProject,name='getSizeProject'),
+    path('getInfoProject',views.getInfoProject,name='getInforProject'),
+    path('getSizeVideo',views.getSizeVideo,name='getSizeVideo'),
 ]

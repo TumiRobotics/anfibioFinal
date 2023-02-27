@@ -10,6 +10,9 @@ function mostrarImagen(fuente,nombre)
 
 function mostrarVideo()
 {
+    barraFoto = document.getElementById('barraFoto')
+    barraVideo = document.getElementById('barraVideo')
+
     btnVideo = document.getElementById('btnVideo')
     btnFoto = document.getElementById('btnFoto')
 
@@ -18,6 +21,9 @@ function mostrarVideo()
 
     contenedorFoto.style.display = 'none'
     contenedorVideo.style.display = 'none'
+
+    barraFoto.style.display = 'none'
+    barraVideo.style.display = 'none'
 
     btnVideo.style.color = 'black'
     btnVideo.style.backgroundColor = '#96EADA'
@@ -26,10 +32,15 @@ function mostrarVideo()
     btnFoto.style.backgroundColor = "transparent"
 
     contenedorVideo.style.display = 'flex'
+
+    barraVideo.style.display = ''
 }
 
 function mostrarFoto()
 {
+    barraFoto = document.getElementById('barraFoto')
+    barraVideo = document.getElementById('barraVideo')
+
     btnVideo = document.getElementById('btnVideo')
     btnFoto = document.getElementById('btnFoto')
 
@@ -39,6 +50,9 @@ function mostrarFoto()
     contenedorFoto.style.display = 'none'
     contenedorVideo.style.display = 'none'
 
+    barraFoto.style.display = 'none'
+    barraVideo.style.display = 'none'
+
     btnFoto.style.color = 'black'
     btnFoto.style.backgroundColor = '#96EADA'
 
@@ -46,6 +60,8 @@ function mostrarFoto()
     btnVideo.style.backgroundColor = "transparent"
 
     contenedorFoto.style.display = 'flex'
+
+    barraFoto.style.display = ''
 }
 
 function cerrarVideo() {
@@ -61,4 +77,34 @@ function verVideo(fuente,nombre)
 
     nombreVideo.innerHTML = nombre
     fuenteVideo.src = '/static/' + fuente
+}
+
+function buscarVideo(elemento)
+{
+    videosTotales = document.querySelectorAll('.busquedaVideo')
+    videosTotales.forEach(element => {
+        if(element.children[1].children[0].innerText.indexOf(elemento.value) > -1)
+        {
+            element.style.display = ''
+        }
+        else
+        {
+            element.style.display = 'none'
+        }
+    });
+}
+
+function buscarFoto(elemento)
+{
+    fotosTotales = document.querySelectorAll('.busquedaFoto')
+    fotosTotales.forEach(element => {
+        if(element.children[1].children[0].innerText.indexOf(elemento.value) > -1)
+        {
+            element.style.display = ''
+        }
+        else
+        {
+            element.style.display = 'none'
+        }
+    });
 }

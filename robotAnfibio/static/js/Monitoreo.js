@@ -105,6 +105,15 @@ function capturarVideo()
 
 document.addEventListener('DOMContentLoaded',()=>{
 
+    let ingresoVelocidad = document.getElementById('ingresoVelocidad')
+    let valorVelocidad = document.getElementById('valorVelocidad')
+
+    ingresoVelocidad.onchange = function() 
+    {
+        console.log(ingresoVelocidad.value)
+        valorVelocidad.innerHTML = ingresoVelocidad.value
+    }
+
     let infoSonar = document.getElementById('sonarData');
     let graficaSonar = echarts.init(infoSonar);
 
@@ -154,5 +163,22 @@ document.addEventListener('DOMContentLoaded',()=>{
             document.getElementById('n2').innerHTML = data.ndata[1]
         })
     },3000)
+
+    setInterval(()=>{
+        fetch('/getSizeProject')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('almacenamientoInfo').innerHTML = data.total
+        })
+    },2000)
+
+    setInterval(()=>{
+        fetch('/getInfoProject')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('sensorD').innerHTML = data.sensorD
+            document.getElementById('sensorH').innerHTML = data.sensorH
+        })
+    },2000)
 
 })

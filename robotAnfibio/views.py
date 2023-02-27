@@ -56,7 +56,45 @@ def main(request):
     })
 
 def consola(request):
-    return render(request,'robotAnfibio/consola.html')
+    usuarios_anfibio = UsuarioAnfibio.objects.all().order_by('id')
+    embarcaciones_anfibio = EmbarcacionesAnfibio.objects.all().order_by('id')
+    return render(request,'robotAnfibio/consola.html',{
+        'usuariosAnfibio':usuarios_anfibio,
+        'embarcacionesAnfibio':embarcaciones_anfibio,
+    })
+
+def eliminarUsuario(request,usuarioId):
+    usuario_eliminar = UsuarioAnfibio.objects.get(id=usuarioId)
+    codigo_eliminar = str(usuario_eliminar.id)
+    while len(codigo_eliminar) < 4:
+        codigo_eliminar = '0' + codigo_eliminar
+    os.remove(f'./robotAnfibio/static/usr/usr-{codigo_eliminar}.png')
+    usuario_eliminar.delete()
+    return HttpResponseRedirect(reverse('robotAnfibio:consola'))
+
+def eliminarEmbarcacion(request,embarcacionId):
+    embarcacion_eliminar = EmbarcacionesAnfibio.objects.get(id=embarcacionId)
+    codigo_eliminar = str(embarcacion_eliminar.id)
+    while len(codigo_eliminar) < 4:
+        codigo_eliminar = '0' + codigo_eliminar
+    os.remove(f'./robotAnfibio/static/emb/emb-{codigo_eliminar}.png')
+    embarcacion_eliminar.delete()
+    return HttpResponseRedirect(reverse('robotAnfibio:consola'))
+
+
+@csrf_exempt
+def nuevaEmbarcacion(request):
+    if request.method == 'POST':
+        EmbarcacionesAnfibio().save()
+        ult_embarcacion = EmbarcacionesAnfibio.objects.latest('id')
+        codigo_embarcacion = str(ult_embarcacion.id)
+        while len(codigo_embarcacion) < 4:
+            codigo_embarcacion = '0' + codigo_embarcacion
+        ult_embarcacion.codigo_embarcacion = 'EMB-' + codigo_embarcacion
+        ult_embarcacion.imagen_embarcacion = f'emb/emb-{codigo_embarcacion}.png'
+        ult_embarcacion.save()
+        Image.open(request.FILES.get('fotoEmbarcacion')).save(f'./robotAnfibio/static/emb/emb-{codigo_embarcacion}.png')
+        return HttpResponseRedirect(reverse('robotAnfibio:consola'))
 
 @csrf_exempt
 def nuevoUsuario(request):
@@ -294,4 +332,37 @@ def apagarHidrolavadora(request):
     print('Se apagara la hidrolavoadora')
     return JsonResponse({
         'resp':'ok'
+    })
+
+def getSizeProject(request):
+    total = get_dir_size()
+    total = float(total)/float(1000000000)
+    total = round(total,2)
+    return JsonResponse({
+        'total': str(total)
+    })
+
+def getSizeVideo(request):
+    global ruta_videos_inspeccion
+    sizeVideos = get_dir_size(path=ruta_videos_inspeccion)
+    return JsonResponse({
+        'sizeVideos':str(sizeVideos)
+    })
+
+def get_dir_size(path='.'):
+    total = 0
+    with os.scandir(path) as it:
+        for entry in it:
+            if entry.is_file():
+                total += entry.stat().st_size
+            elif entry.is_dir():
+                total += get_dir_size(entry.path)
+    return total
+
+def getInfoProject(request):
+    sensorH = random.randint(100,999)
+    sensorD = random.randint(100,999)
+    return JsonResponse({
+        'sensorD':str(sensorD),
+        'sensorH':str(sensorH),
     })
