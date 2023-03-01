@@ -113,8 +113,8 @@ body,html {
 }
 
 .contenedorFoto {
-    height: 180px;
-    width: 180px;
+    height: 220px;
+    width: 220px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -129,8 +129,8 @@ body,html {
 }
 
 .fotoUsuario {
-    height: 150px;
-    width: 150px;
+    height: 190px;
+    width: 190px;
     border-radius: 50%;
 }
 
