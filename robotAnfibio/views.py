@@ -131,9 +131,17 @@ def monitoreo(request,ind):
     global ruta_fotos_inspeccion
     global ruta_videos_inspeccion
     global inicio_inspeccion
+    inspeccionExistente = '0'
     codigo_embarcacion = ind
-    ult_inspeccion = InspeccionesAnfibio.objects.latest('id')
-    indicador = str(ult_inspeccion.id + 1)
+    try:
+        ult_inspeccion = InspeccionesAnfibio.objects.latest('id')
+        indicador = str(ult_inspeccion.id + 1)
+        inspeccionExistente = '0'
+    except:
+        InspeccionesAnfibio().save()
+        ult_inspeccion = InspeccionesAnfibio.objects.latest('id')
+        indicador = str(ult_inspeccion.id)
+        inspeccionExistente = '1'
     while len(indicador) < 4:
         indicador = '0' + indicador
     codigo_inspeccion = 'INS-' + indicador
@@ -146,7 +154,17 @@ def monitoreo(request,ind):
     os.mkdir(ruta_directorio_general)
     os.mkdir(ruta_directorio_videos)
     os.mkdir(ruta_directorio_fotos)
-    InspeccionesAnfibio(codigo_inspeccion=codigo_inspeccion,ruta_fotos=ruta_fotos,ruta_videos=ruta_videos,embarcacion_inspeccion=codigo_embarcacion,duracion_inspeccion='0',distancia_inspeccion='0').save()
+    if inspeccionExistente == '0':
+        InspeccionesAnfibio(codigo_inspeccion=codigo_inspeccion,ruta_fotos=ruta_fotos,ruta_videos=ruta_videos,embarcacion_inspeccion=codigo_embarcacion,duracion_inspeccion='0',distancia_inspeccion='0').save()
+    else:
+        ult_inspeccion.codigo_inspeccion = codigo_inspeccion
+        ult_inspeccion.ruta_fotos = ruta_fotos
+        ult_inspeccion.ruta_videos = ruta_videos
+        ult_inspeccion.embarcacion_inspeccion = codigo_embarcacion
+        ult_inspeccion.duracion_inspeccion = '0'
+        ult_inspeccion.distancia_inspeccion = '0'
+        ult_inspeccion.save()
+
     ruta_fotos_inspeccion = ruta_directorio_fotos
     ruta_videos_inspeccion = ruta_directorio_videos
     inicio_inspeccion = datetime.datetime.now()
