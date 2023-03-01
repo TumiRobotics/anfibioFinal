@@ -113,8 +113,8 @@ body,html {
 }
 
 .contenedorFoto {
-    height: 220px;
-    width: 220px;
+    height: 180px;
+    width: 180px;
     display: flex;
     flex-direction: column;
     justify-content: center;
