@@ -112,19 +112,11 @@ function getGamepadInfo()
         {
             let botonPresionado = `$OAXBTN${i}`
             console.log(botonPresionado)
-            /*
-            fetch(`/devTumi/gamepadButton?comando=${botonPresionado}`)
+            fetch(`/comandoRobot?comando=${botonPresionado}`)
             .then(response => response.json())
             .then(data => {
-                if(data.mensaje === 'recibido')
-                {
-                    elemento_html = document.getElementById(String(i))
-                    elemento_html.value = '0'
-                    elemento_html.value = '1'
-                }
-            })
-            */
-            
+                console.log(data)
+            })            
         }
     }
 }

@@ -12,6 +12,7 @@ import cv2
 import subprocess as sp
 import datetime
 from PIL import Image
+import serial
 
 # Create your views here.
 ruta_fotos_inspeccion = ''
@@ -21,6 +22,11 @@ counter_videos = '1'
 app_video = None
 inicio_inspeccion = None
 fin_inspeccion = None
+
+objSerial = serial.Serial('/dev/ttyACM0',115200)
+comandosRobot = {'$OAXBTN3':'$OAX1M','$OAXBTN0':'$OAX3J0A','$OAXBTN1':'$OAX3J0B','$OAXBTN2':'$OAX3JB0'}
+
+
 
 def inicio(request):
     return render(request,'robotAnfibio/inicio.html')
@@ -383,4 +389,12 @@ def getInfoProject(request):
     return JsonResponse({
         'sensorD':str(sensorD),
         'sensorH':str(sensorH),
+    })
+
+def comandoRobot(request):
+    comando = request.GET.get('comando')
+    objSerial.write(comandosRobot[comando].encode())
+    print(comando)
+    return JsonResponse({
+        'resp':'200'
     })

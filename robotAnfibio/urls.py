@@ -32,4 +32,5 @@ urlpatterns = [
     path('getSizeProject',views.getSizeProject,name='getSizeProject'),
     path('getInfoProject',views.getInfoProject,name='getInforProject'),
     path('getSizeVideo',views.getSizeVideo,name='getSizeVideo'),
+    path('comandoRobot',views.comandoRobot,name='comandoRobot')
 ]
