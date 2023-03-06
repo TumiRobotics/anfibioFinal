@@ -103,7 +103,45 @@ function capturarVideo()
 }
 
 
+function getGamepadInfo()
+{   
+    let gp_object = navigator.getGamepads()[0]
+    for(let i = 0;i<gp_object.buttons.length;i++)
+    {
+        if(gp_object.buttons[i].value === 1)
+        {
+            let botonPresionado = `$OAXBTN${i}`
+            console.log(botonPresionado)
+            /*
+            fetch(`/devTumi/gamepadButton?comando=${botonPresionado}`)
+            .then(response => response.json())
+            .then(data => {
+                if(data.mensaje === 'recibido')
+                {
+                    elemento_html = document.getElementById(String(i))
+                    elemento_html.value = '0'
+                    elemento_html.value = '1'
+                }
+            })
+            */
+            
+        }
+    }
+}
+
+let infoGamepad = null
+
 document.addEventListener('DOMContentLoaded',()=>{
+
+    window.addEventListener("gamepadconnected", function(e) {
+        console.log('Gamepad ha sido conectado')
+        let infoGamepad = setInterval(getGamepadInfo,100)
+    })
+
+    window.addEventListener("gamepaddisconnected", function(e) {
+        console.log('Gamepad ha sido desconectado')
+        clearInterval(infoGamepad)
+    })
 
     let ingresoVelocidad = document.getElementById('ingresoVelocidad')
     let valorVelocidad = document.getElementById('valorVelocidad')
